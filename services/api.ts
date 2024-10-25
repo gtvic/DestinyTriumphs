@@ -33,9 +33,11 @@ export const getTriumphs = async (membershipType: number, destinyMembershipId: s
             progress: objective.progress, // Progrès de l'objectif
             completionValue: objective.completionValue // Valeur d'achèvement de l'objectif
         }));
-        
-        // Vérifie si au moins un objectif est complet
-      const isComplete = objectiveStatus.every((obj: any) => obj.complete);
+          
+      var isComplete = false
+      if(!objectives){
+        isComplete = objectiveStatus.every((obj: any) => obj.complete);
+      }
       
       triumphData.push({
         hash, // Hash du record
