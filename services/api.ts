@@ -14,7 +14,6 @@ export const api = () => {
         }
     })
 }
-
 export const getTriumphs = async (membershipType: number, destinyMembershipId: string) => {
     try {
         const response = await api().get(`/Destiny2/${membershipType}/Profile/${destinyMembershipId}/?components=Records`,)
