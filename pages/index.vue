@@ -9,12 +9,24 @@
           <div v-for="(record, index) in triumphs" :key="index" class="triumph">
             <h2>Record Hash: {{ record.hash }}</h2>
             <p>Status: {{ record.complete ? 'Complete' : 'Incomplete' }}</p>
+            <div v-if="record.complete">
+                  <input type="checkbox" name="complete" checked disabled>
+                </div>
+                <div v-else>
+                  <input type="checkbox" name="not_complete" disabled>
+                </div>
             <p v-for="(objective, index) in record.objectives" :key="index">
                 {{ 
                     objective.progress > objective.completionValue ?
                         `Objective ${index + 1}: Complete: ${objective.complete} ${objective.completionValue}/${objective.completionValue}` :
                         `Objective ${index + 1}: Complete: ${objective.complete} ${objective.progress}/${objective.completionValue}`
                 }}
+                <div v-if="objective.complete">
+                  <input type="checkbox" name="complete" checked disabled>
+                </div>
+                <div v-else>
+                  <input type="checkbox" name="not_complete" disabled>
+                </div>
             </p> 
           </div>
         </div>
@@ -45,6 +57,7 @@
       loading.value = false
     }
   }
+  
   
   onMounted(() => {
     fetchTriumphs()
